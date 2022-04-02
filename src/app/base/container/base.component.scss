@@ -1,0 +1,93 @@
+.base__container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  padding: 15px 10px;
+
+  .base__header {
+    justify-content: space-between;
+
+    .base__header-title {
+      gap: 8px;
+
+      .base__header-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+      }
+
+      .title {
+        align-self: flex-end;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 26px;
+      }
+    }
+
+    .base__header-info {
+      gap: 15px;
+      font-size: .9rem;
+      color: lightslategray;
+
+      .lang__switcher {
+        gap: 5px;
+        padding: 5px 10px;
+        background: gray;
+        border-radius: 27px;
+        font-size: 1rem;
+        color: white;
+
+        .switcher__elem-delimiter {
+          width: 2px;
+          height: 17px;
+          background: white;
+        }
+      }
+    }
+  }
+
+  .base__main {
+    margin-top: 2.5em;
+
+    .base__main-info {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+
+      .mein__title {
+        gap: 5px;
+
+        .main__title-icon {
+          font-size: 1.8rem;
+        }
+
+        .title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          line-height: 1.8rem;
+        }
+      }
+
+      .main__description {
+        font-size: .9rem;
+        line-height: 1rem;
+        color: #6b6b6b;
+
+        .description__item {
+          gap: 5px;
+
+          .mat-chip {
+            padding: 3px 5px;
+            border-radius: 27px;
+            background: cornflowerblue;
+          }
+        }
+
+        .description__item:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
