@@ -56,10 +56,12 @@
       gap: .6rem;
 
       .mein__title {
-        gap: 5px;
+        gap: 3px;
 
         .main__title-icon {
+          align-self: flex-end;
           font-size: 1.8rem;
+          transform: rotate(-155deg);
         }
 
         .title {
@@ -88,6 +90,57 @@
           margin-bottom: 5px;
         }
       }
+    }
+
+    .base__main-actions {
+      justify-content: space-between;
+      margin-top: 2.5em;
+
+      .main__actions-title {
+        gap: 3px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #22242b;
+
+        .mat-icon {
+          font-size: 0.9rem;
+          width: 12px;
+          height: 11px;
+        }
+
+        .new__task-button {
+          border: none;
+          padding: 5px 10px;
+          margin-left: 15px;
+          font-size: 1rem;
+          background: cornflowerblue;
+          color: white;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+
+      .main__actions-filters {
+        gap: 10px;
+
+        .filters__item {
+          border: none;
+          padding: 5px 10px;
+          font-size: 1rem;
+          background: transparent;
+          color: gray;
+
+          &::ng-deep .mat-ripple {
+            width: 65px;
+            height: 30px;
+            top: 8px;
+          }
+        }
+      }
+    }
+
+    .section__delimiter {
+      border-top-color: #f9fafa;
     }
   }
 }

@@ -1,0 +1,24 @@
+.search__field-container {
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 19em;
+  background: #f9fafa;
+  height: 2.25em;
+  border-radius: 27px;
+  border: none;
+
+  .search__field-icon {
+    width: 18px;
+    color: #22242b;
+  }
+
+  input {
+    width: 80%;
+    height: 70%;
+    border: none;
+    outline: none;
+    font-size: .9rem;
+    background: #f9fafa;
+    color: #22242b;
+  }
+}
