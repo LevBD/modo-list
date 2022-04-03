@@ -1,0 +1,103 @@
+.task__dialog-container {
+  justify-content: space-between;
+  height: 100%;
+
+  .task__dialog-header {
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .header__title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .header__action {
+      width: 1.9em;
+      height: 1.9em;
+      line-height: 1.25em;
+    }
+  }
+
+  .section__delimiter {
+    margin: 1.25em 0;
+    border-top-color: #6b6b6b;
+  }
+
+  .task__dialog-main {
+    flex: 1;
+
+    .dialog__main-item {
+      width: 100%;
+
+      .main__item-field {
+        margin: 0 0 10px 0;
+        cursor: pointer;
+
+        @media(max-width: 414px) {
+          width: 100%;
+        }
+
+        &::ng-deep .mat-form-field-flex {
+
+          .mat-form-field-infix {
+            display: flex;
+            align-items: center;
+            width: 27em;
+            height: 2.5em;
+            padding: 0;
+            border-top: none;
+
+            input {
+              margin-top: 4px;
+              color: #e8e9ed;
+              height: 80%;
+              letter-spacing: .1px;
+            }
+          }
+
+          .mat-form-field-suffix {
+            top: .55em;
+          }
+
+          .mat-form-field-outline-start,
+          .mat-form-field-outline-end,
+          .mat-form-field-outline-gap {
+            background: #353945;
+          }
+
+          .mat-form-field-outline-start {
+            border-left: 1px solid #2e323d;
+            border-top: 1px solid #2e323d;
+            border-bottom: 1px solid #2e323d;
+          }
+
+          .mat-form-field-outline-end {
+            border-right: 1px solid #2e323d;
+            border-top: 1px solid #2e323d;
+            border-bottom: 1px solid #2e323d;
+          }
+
+          .mat-form-field-outline-start {
+            padding-left: 10px;
+            border-radius: 4px 0 0 4px;
+          }
+
+          .mat-form-field-outline-end {
+            border-radius: 0 4px 4px 0;
+          }
+        }
+      }
+
+      .description__item-field::ng-deep .mat-form-field-infix {
+        height: 8em !important;
+
+        textarea {
+          height: 85%;
+          padding: 0 5px 0 0;
+          margin: 0;
+          resize: none;
+        }
+      }
+    }
+  }
+}

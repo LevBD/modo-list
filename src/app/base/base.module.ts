@@ -5,6 +5,7 @@ import { BaseRoutingModule } from './base-routing.module';
 import { CustomMaterialModule } from '../shared/modules';
 import { SearchTasksComponent, TasksListComponent } from './components';
 import { AddNewTaskDialogComponent } from './dialogs';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddNewTaskDialogComponent } from './dialogs';
   imports: [
     CommonModule,
     BaseRoutingModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class BaseModule { }

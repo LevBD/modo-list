@@ -1,1 +1,41 @@
-<p>add-new-task-dialog works!</p>
+<div class="task__dialog-container flex-col">
+  <header class="task__dialog-header flex-row">
+    <span class="header__title">Create new task</span>
+
+    <button class="header__action" mat-icon-button (click)="closeDialog()">
+      <mat-icon class="header__action-icon">close</mat-icon>
+    </button>
+  </header>
+
+  <mat-divider class="section__delimiter"></mat-divider>
+
+  <div class="task__dialog-main">
+    <form class="flex-col" [formGroup]="form">
+      <div class="dialog__main-item">
+        <span class="main__item-title">Title</span>
+
+        <mat-form-field class="main__item-field" appearance="outline">
+          <input matInput formControlName="title" >
+        </mat-form-field>
+      </div>
+
+      <div class="dialog__main-item">
+        <span class="main__item-title">Description</span>
+
+        <mat-form-field class="main__item-field description__item-field" appearance="outline">
+          <textarea class="scroll__y" matInput rows="4" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="dialog__main-item">
+        <mat-slide-toggle formControlName="is_active">Is active</mat-slide-toggle>
+      </div>
+    </form>
+  </div>
+
+  <mat-dialog-actions class="task__dialog-actions">
+    <button class="dialog__actions-item" mat-button>Create</button>
+
+    <button class="dialog__actions-item" mat-button (click)="closeDialog()">Cancel</button>
+  </mat-dialog-actions>
+</div>

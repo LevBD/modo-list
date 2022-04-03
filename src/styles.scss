@@ -76,6 +76,36 @@
   }
 }
 
+.scroll__y {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 3px !important;
+    background: #d9dbe1 !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #1eb7d0;
+    border-radius: 40px;
+  }
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 1;
+  backdrop-filter: blur(5px);
+}
+
+.mat-dialog-container {
+  padding: 18px !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
 html, body { height: 100%;  font-size: 16px; }
 body { margin: 0; font-family: 'Inter', sans-serif; background: #e8e9ed; }
 span { display: block; }
