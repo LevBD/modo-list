@@ -148,5 +148,52 @@
     .section__delimiter {
       border-top-color: #f9fafa;
     }
+
+    .base__task-list {
+      gap: .9em;
+      margin-top: 1em;
+
+      .base__tasks-item {
+        justify-content: space-between;
+        gap: 10px;
+        width: 44em;
+        height: fit-content;
+        border: 2px solid #7e7e7e;
+        border-radius: 16px;
+        background: #f9fafa;
+
+        .tasks__item-indicator {
+          width: 3.5em;
+          height: 3.2em;
+          border-radius: 14px 0 0 14px;
+
+          &.active {
+            background: cornflowerblue;
+          }
+
+          &.complete {
+            background: #1dc068;
+          }
+        }
+
+        .tasks__item-info {
+          flex: 1;
+          padding: 5px 0;
+        }
+
+        .tasks__item-actions {
+          gap: 5px;
+          margin-right: 5px;
+
+          .complete__item-icon {
+            color: #1dc068;
+          }
+
+          .delete__item-icon {
+            color: #d91141;
+          }
+        }
+      }
+    }
   }
 }

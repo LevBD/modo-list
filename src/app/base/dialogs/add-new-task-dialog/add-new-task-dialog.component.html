@@ -1,6 +1,6 @@
 <div class="task__dialog-container flex-col">
   <header class="task__dialog-header flex-row">
-    <span class="header__title">Create new task</span>
+    <span class="header__title">{{ dialogData.type === 'edit' ? 'Edit task' : 'Create new task' }}</span>
 
     <button class="header__action" mat-icon-button (click)="closeDialog()">
       <mat-icon class="header__action-icon">close</mat-icon>
@@ -34,7 +34,7 @@
   </div>
 
   <mat-dialog-actions class="task__dialog-actions">
-    <button class="dialog__actions-item" mat-button>Create</button>
+    <button class="dialog__actions-item" mat-button (click)="createTask()">{{ dialogData.type === 'edit' ? 'Edit' : 'Create' }}</button>
 
     <button class="dialog__actions-item" mat-button (click)="closeDialog()">Cancel</button>
   </mat-dialog-actions>

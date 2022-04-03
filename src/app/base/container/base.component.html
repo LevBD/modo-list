@@ -55,5 +55,33 @@
     </div>
 
     <mat-divider class="section__delimiter"></mat-divider>
+
+    <div class="base__task-list flex-col" *ngIf="tasks$ | async">
+      <ng-container *ngFor="let task of tasks">
+        <div class="base__tasks-item flex-row">
+          <div class="tasks__item-indicator" [ngClass]="{'active': task.is_active, 'complete': !task.is_active }"></div>
+
+          <div class="tasks__item-info flex-col">
+            <span class="tasks__item-title">{{ task.title }}</span>
+
+            <span class="tasks__item-description">{{ task.description }}</span>
+          </div>
+
+          <div class="tasks__item-actions flex-row">
+            <button class="edit__item" mat-icon-button (click)="openAddTaskDialog('edit', task)">
+              <mat-icon class="edit__item-icon item__action-icon">edit</mat-icon>
+            </button>
+
+            <button class="complete__item" mat-icon-button>
+              <mat-icon class="complete__item-icon item__action-icon">done_all</mat-icon>
+            </button>
+
+            <button class="delete__item" mat-icon-button>
+              <mat-icon class="delete__item-icon item__action-icon">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
