@@ -4,14 +4,14 @@ import { BaseComponent } from './container/base.component';
 import { BaseRoutingModule } from './base-routing.module';
 import { CustomMaterialModule } from '../shared/modules';
 import { SearchTasksComponent } from './components';
-import { AddNewTaskDialogComponent } from './dialogs';
+import { TaskDialogComponent } from './dialogs';
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     BaseComponent,
     SearchTasksComponent,
-    AddNewTaskDialogComponent
+    TaskDialogComponent
   ],
   imports: [
     CommonModule,

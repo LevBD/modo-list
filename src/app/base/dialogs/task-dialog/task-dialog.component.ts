@@ -6,17 +6,17 @@ import {takeUntil} from "rxjs/operators";
 import { Task } from "../../../shared/interfaces";
 
 @Component({
-  selector: 'modo-add-new-task-dialog',
-  templateUrl: './add-new-task-dialog.component.html',
-  styleUrls: ['./add-new-task-dialog.component.scss'],
+  selector: 'modo-task-dialog',
+  templateUrl: './task-dialog.component.html',
+  styleUrls: ['./task-dialog.component.scss'],
   providers: [ComponentDestroyService, SnackbarService]
 })
-export class AddNewTaskDialogComponent implements OnInit {
+export class TaskDialogComponent implements OnInit {
   public form: FormGroup | any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData,
-    private dialog: MatDialogRef<AddNewTaskDialogComponent>,
+    private dialog: MatDialogRef<TaskDialogComponent>,
     private snackbar: SnackbarService,
     private appService: AppService,
     @Self() private destroyed$: ComponentDestroyService
@@ -34,6 +34,15 @@ export class AddNewTaskDialogComponent implements OnInit {
     this.appService.createTask(this.form.value).pipe(takeUntil(this.destroyed$)).subscribe((data) => {
       if (data) {
         this.snackbar.simpleSnackbar('Task created');
+        this.dialog.close({data});
+      }
+    });
+  }
+
+  public updateTask() {
+    this.appService.updateTask(this.dialogData.task.id , this.form.value).pipe(takeUntil(this.destroyed$)).subscribe((data) => {
+      if (data) {
+        this.snackbar.simpleSnackbar('Task updated');
         this.dialog.close({data});
       }
     });

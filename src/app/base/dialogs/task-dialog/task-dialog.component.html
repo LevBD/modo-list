@@ -34,7 +34,7 @@
   </div>
 
   <mat-dialog-actions class="task__dialog-actions">
-    <button class="dialog__actions-item" mat-button (click)="createTask()">{{ dialogData.type === 'edit' ? 'Edit' : 'Create' }}</button>
+    <button class="dialog__actions-item" mat-button (click)="dialogData.type === 'edit' ? updateTask() : createTask()">{{ dialogData.type === 'edit' ? 'Edit' : 'Create' }}</button>
 
     <button class="dialog__actions-item" mat-button (click)="closeDialog()">Cancel</button>
   </mat-dialog-actions>

@@ -7,17 +7,14 @@
     </div>
 
     <div class="base__header-info flex-row">
-      <span class="header__info-elem">Active tasks: 0</span>
+      <span class="header__info-elem">
+        {{ getActiveTaskCount() === 0 || getActiveTaskCount() > 1 ? 'Active tasks' : 'Active task'}}:
+        <span class="active__elem">{{ getActiveTaskCount() }}</span>
+      </span>
 
-      <span class="header__info-elem">Completed tasks: 0</span>
-
-      <div class="lang__switcher flex-row">
-        <div class="lang__switcher-elem">en</div>
-
-        <div class="switcher__elem-delimiter"></div>
-
-        <div class="lang__switcher-elem">ua</div>
-      </div>
+      <span class="header__info-elem">
+        {{ getCompletedTaskCount() === 0 || getCompletedTaskCount() > 1 ? 'Completed tasks' : 'Completed task' }}:
+        <span class="completed__elem">{{ getCompletedTaskCount() }}</span></span>
     </div>
   </header>
 
@@ -42,24 +39,24 @@
 
         <span>Board view</span>
 
-        <button class="new__task-button" mat-button (click)="openAddTaskDialog()">New task</button>
+        <button class="new__task-button" mat-button (click)="openTaskDialog()">New task</button>
       </div>
 
       <div class="main__actions-filters flex-row">
-        <button class="filters__item filter__tasks" mat-button>Filter</button>
-
-        <button class="filters__item sort__tasks" mat-button>Sort</button>
-
-        <modo-search-tasks></modo-search-tasks>
+        <modo-search-tasks
+          (onSearchChanged)="onSearchChanged($event)"
+        ></modo-search-tasks>
       </div>
     </div>
 
     <mat-divider class="section__delimiter"></mat-divider>
 
-    <div class="base__task-list flex-col" *ngIf="tasks$ | async">
+    <div class="base__task-list flex-col" *ngIf="tasks$ | async as tasks">
       <ng-container *ngFor="let task of tasks">
         <div class="base__tasks-item flex-row">
-          <div class="tasks__item-indicator" [ngClass]="{'active': task.is_active, 'complete': !task.is_active }"></div>
+          <div class="tasks__item-indicator flex-row-center" [ngClass]="{ 'active': task.is_active, 'complete': !task.is_active }">
+            <mat-icon class="item__indicator-icon" *ngIf="!task.is_active">done_all</mat-icon>
+          </div>
 
           <div class="tasks__item-info flex-col">
             <span class="tasks__item-title">{{ task.title }}</span>
@@ -68,15 +65,15 @@
           </div>
 
           <div class="tasks__item-actions flex-row">
-            <button class="edit__item" mat-icon-button (click)="openAddTaskDialog('edit', task)">
+            <button class="edit__item" *ngIf="task.is_active" mat-icon-button (click)="openTaskDialog('edit', task)">
               <mat-icon class="edit__item-icon item__action-icon">edit</mat-icon>
             </button>
 
-            <button class="complete__item" mat-icon-button>
+            <button class="complete__item" *ngIf="task.is_active" mat-icon-button (click)="completeTask(task)">
               <mat-icon class="complete__item-icon item__action-icon">done_all</mat-icon>
             </button>
 
-            <button class="delete__item" mat-icon-button>
+            <button class="delete__item" mat-icon-button (click)="deleteTask(task)">
               <mat-icon class="delete__item-icon item__action-icon">delete</mat-icon>
             </button>
           </div>

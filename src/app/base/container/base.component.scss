@@ -1,7 +1,6 @@
 .base__container {
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
-  height: 100vh;
   margin: auto;
   padding: 15px 10px;
 
@@ -30,19 +29,23 @@
       font-size: .9rem;
       color: lightslategray;
 
-      .lang__switcher {
+      @media (max-width: 415px) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         gap: 5px;
-        padding: 5px 10px;
-        background: gray;
-        border-radius: 27px;
-        font-size: 1rem;
-        color: white;
+      }
 
-        .switcher__elem-delimiter {
-          width: 2px;
-          height: 17px;
-          background: white;
-        }
+      .active__elem {
+        display: inline-block;
+        color: cornflowerblue;
+        font-weight: 600;
+      }
+
+      .completed__elem {
+        display: inline-block;
+        color: #1dc068;
+        font-weight: 600;
       }
     }
   }
@@ -76,6 +79,10 @@
         line-height: 1rem;
         color: #6b6b6b;
 
+        @media (max-width: 375px) {
+          display: none;
+        }
+
         .description__item {
           gap: 5px;
 
@@ -96,16 +103,30 @@
       justify-content: space-between;
       margin-top: 2.5em;
 
+      @media (max-width: 375px) {
+        margin-top: 1em;
+      }
+
       .main__actions-title {
         gap: 3px;
         font-size: 1.1rem;
         font-weight: 600;
         color: #22242b;
 
+        @media (max-width: 415px) {
+          span {
+            display: none;
+          }
+        }
+
         .mat-icon {
           font-size: 0.9rem;
           width: 12px;
           height: 11px;
+
+          @media (max-width: 415px) {
+            display: none;
+          }
         }
 
         .new__task-button {
@@ -125,24 +146,6 @@
           }
         }
       }
-
-      .main__actions-filters {
-        gap: 10px;
-
-        .filters__item {
-          border: none;
-          padding: 5px 10px;
-          font-size: 1rem;
-          background: transparent;
-          color: gray;
-
-          &::ng-deep .mat-ripple {
-            width: 4em;
-            height: 1.9em;
-            top: 8px;
-          }
-        }
-      }
     }
 
     .section__delimiter {
@@ -152,19 +155,27 @@
     .base__task-list {
       gap: .9em;
       margin-top: 1em;
+      margin-bottom: 5em;
 
       .base__tasks-item {
+        position: relative;
         justify-content: space-between;
         gap: 10px;
-        width: 44em;
         height: fit-content;
         border: 2px solid #7e7e7e;
         border-radius: 16px;
         background: #f9fafa;
 
+        @media (max-width: 415px) {
+          flex-direction: column;
+        }
+
         .tasks__item-indicator {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
           width: 3.5em;
-          height: 3.2em;
           border-radius: 14px 0 0 14px;
 
           &.active {
@@ -174,11 +185,25 @@
           &.complete {
             background: #1dc068;
           }
+
+          .item__indicator-icon {
+            color: #f9fafa;
+          }
         }
 
         .tasks__item-info {
           flex: 1;
+          margin-left: 4em;
           padding: 5px 0;
+          font-size: 1rem;
+
+          .tasks__item-title {
+            font-weight: 600;
+          }
+
+          .tasks__item-description {
+            color: #6b6b6b;
+          }
         }
 
         .tasks__item-actions {

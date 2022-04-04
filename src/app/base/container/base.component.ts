@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit, Self} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddNewTaskDialogComponent } from '../dialogs';
+import { TaskDialogComponent } from '../dialogs';
 import { takeUntil } from 'rxjs/operators';
 import { AppService, ComponentDestroyService } from '../../shared/services';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Task } from '../../shared/interfaces';
 
 @Component({
@@ -13,7 +13,7 @@ import { Task } from '../../shared/interfaces';
   providers: [ComponentDestroyService]
 })
 export class BaseComponent implements OnInit {
-  public tasks$ = new BehaviorSubject(null);
+  public tasks$ = new Subject<Task[]>();
 
   public tasks: Task[] = [];
 
@@ -28,9 +28,9 @@ export class BaseComponent implements OnInit {
     this.getAllTasks();
   }
 
-  public openAddTaskDialog( type?: string, task?: Task) {
+  public openTaskDialog( type?: string, task?: Task) {
     this.dialog
-      .open(AddNewTaskDialogComponent, {
+      .open(TaskDialogComponent, {
         data: { task, type },
         maxWidth: '31em',
         width: '100%',
@@ -43,17 +43,60 @@ export class BaseComponent implements OnInit {
       )
       .subscribe((data) => {
         if(data) {
+          this.tasks.splice(0, this.tasks.length);
           this.getAllTasks();
         }
       });
+  }
+
+  public onSearchChanged(event: any) {
+    if (!event.value) {
+      event.value = ''
+    }
+
+    const searchArr = this.tasks.filter((item) => item.title.includes(event.value));
+
+    this.tasks$.next(searchArr);
+  }
+
+  public completeTask(task: Task) {
+    const payload = {
+      title: task.title,
+      description: task.description,
+      is_active: false,
+    };
+
+    this.appService.updateTask(task.id, payload)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((data) => {
+        if (data) {
+          this.tasks.splice(0, this.tasks.length);
+          this.getAllTasks();
+        }
+      });
+  }
+
+  public deleteTask(task: Task) {
+    this.appService.deleteTask(task.id)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => {
+          this.tasks.splice(0, this.tasks.length);
+          this.getAllTasks();
+      });
+  }
+
+  public getActiveTaskCount() {
+    return this.tasks.filter((item) => item.is_active).length;
+  }
+
+  public getCompletedTaskCount() {
+    return this.tasks.filter((item) => !item.is_active).length;
   }
 
   private getAllTasks() {
     this.appService.getTasks()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((tasks) => {
-        this.tasks$.next(tasks);
-
         Object.keys(tasks).forEach((key) => {
           this.tasks.push({
             id: key,
@@ -62,6 +105,10 @@ export class BaseComponent implements OnInit {
             is_active: tasks[key].is_active
           });
         });
+
+        this.tasks.sort((a, b) => a.is_active > b.is_active ? -1 : 0);
+
+        this.tasks$.next(this.tasks);
       });
   }
 }

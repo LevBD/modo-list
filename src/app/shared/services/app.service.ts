@@ -24,7 +24,11 @@ export class AppService extends BaseApi {
     return this.post('https://modo-7e53f-default-rtdb.europe-west1.firebasedatabase.app/tasks.json', payload);
   }
 
-  public updateTask(id: string, payload: Task): Observable<any> {
+  public updateTask(id: string | undefined, payload: Task): Observable<any> {
     return this.patch(`https://modo-7e53f-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`, payload);
+  }
+
+  public deleteTask(id: string | undefined): Observable<any> {
+    return this.delete(`https://modo-7e53f-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`);
   }
 }
