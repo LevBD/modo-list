@@ -39,7 +39,7 @@
 
         <span>Board view</span>
 
-        <button class="new__task-button" mat-button (click)="openTaskDialog()">New task</button>
+        <button class="new__task-button" mat-button (click)="openTaskDialog()">New</button>
       </div>
 
       <div class="main__actions-filters flex-row">
@@ -65,7 +65,7 @@
           </div>
 
           <div class="tasks__item-actions flex-row">
-            <button class="edit__item" *ngIf="task.is_active" mat-icon-button (click)="openTaskDialog('edit', task)">
+            <button class="edit__item" mat-icon-button (click)="openTaskDialog('edit', task)">
               <mat-icon class="edit__item-icon item__action-icon">edit</mat-icon>
             </button>
 

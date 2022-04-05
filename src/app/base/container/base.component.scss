@@ -130,6 +130,9 @@
         }
 
         .new__task-button {
+          display: flex;
+          align-items: center;
+          height: 2em;
           border: none;
           margin-left: .8em;
           font-size: 1rem;
@@ -141,7 +144,7 @@
           &::ng-deep .mat-ripple {
             max-width: 6.2em;
             width: 100%;
-            height: 2.25em;
+            height: 2em;
             border-radius: 4px;
           }
         }
@@ -149,6 +152,7 @@
     }
 
     .section__delimiter {
+      margin-top: 10px;
       border-top-color: #f9fafa;
     }
 
